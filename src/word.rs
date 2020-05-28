@@ -36,9 +36,9 @@ pub struct GuessResult {
     /// The [`Word`] that the guess was made on, with any correctly guessed letters revealed
     ///
     /// [`Word`]: struct.Word.html
-    new_word: Word,
+    pub new_word: Word,
     /// `true` if the guess revealed any new letters, `false` otherwise.
-    was_correct: bool,
+    pub was_correct: bool,
 }
 
 impl Word {
