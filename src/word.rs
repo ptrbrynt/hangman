@@ -71,26 +71,7 @@ impl Word {
     ///
     /// [`String`]: /alloc/string/struct.String.html
     pub fn revealed(&self) -> String {
-        let mut string = String::new();
-        for x in &self.0 {
-            string.push(x.character);
-        }
-        string
-    }
-
-    /// Creates an un-guessed [`Word`] from a string
-    ///
-    /// [`Word`]: struct.Word.html
-    pub fn from(string: &'static str) -> Word {
-        Word(
-            string
-                .chars()
-                .map(|c| Letter {
-                    character: c,
-                    guessed: false,
-                })
-                .collect(),
-        )
+        self.0.iter().map(|c| c.character).collect()
     }
 }
 
@@ -106,5 +87,19 @@ impl Display for Word {
             write!(f, "{}", x)?;
         }
         Result::Ok(())
+    }
+}
+
+impl From<&str> for Word {
+    fn from(string: &str) -> Word {
+        Word(
+            string
+                .chars()
+                .map(|c| Letter {
+                    character: c,
+                    guessed: false,
+                })
+                .collect(),
+        )
     }
 }
